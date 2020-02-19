@@ -35,8 +35,8 @@ function app(){
                         },
                         {
                             type: 'input',
-                            name: 'engineerEmail',
-                            message: 'Engineers Email:'
+                            name: 'engineerTitle',
+                            message: 'Engineers Title:'
                         },
                         {
                             type: 'input',
@@ -61,8 +61,8 @@ function app(){
                         },
                         {
                             type: 'input',
-                            name: 'managerEmail',
-                            message: 'Managers Email:'
+                            name: 'managerTitle',
+                            message: 'Managers Title:'
                         },
                         {
                             type: 'input',
@@ -87,8 +87,8 @@ function app(){
                             },
                             {
                                 type: 'input',
-                                name: 'internEmail',
-                                message: 'Intern Email:'
+                                name: 'internTitle',
+                                message: 'Intern Title:'
                             },
                             {
                                 type: 'input',
