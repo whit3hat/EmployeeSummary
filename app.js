@@ -33,8 +33,8 @@ function app(){
                         },
                         {
                             type: 'input',
-                            name: 'engineerTitle',
-                            message: 'Engineers Title:'
+                            name: 'engineerEmail',
+                            message: 'Engineers Email:'
                         },
                         {
                             type: 'input',
@@ -44,6 +44,7 @@ function app(){
                         //create the new engineer item, pass to array then go to getTeam() again
                     ]).then(function engineer(engineerData){
                          console.log(engineerData);
+                         const engineer = new Engineer(engineerData)
                     });
                     break;
                     //if Manager is selected ask the questions to create manager object
@@ -72,6 +73,7 @@ function app(){
                         //create the new maanger object then go back to getTeam()
                     ]).then(function manager(managerData){
                         console.log(managerData);
+                        const manager = new Manager(managerData)
                     });
                     break;
                     //if Intern is selected ask questions to create the intern object
@@ -89,8 +91,8 @@ function app(){
                             },
                             {
                                 type: 'input',
-                                name: 'internTitle',
-                                message: 'Intern Title:'
+                                name: 'internEmail',
+                                message: 'Intern Email:'
                             },
                             {
                                 type: 'input',
@@ -100,6 +102,7 @@ function app(){
                             //create new intern object, add to array then go to getTeam()
                         ]).then(function intern(internData){
                             console.log(internData)
+                            const intern = new Intern(internData)
                         });
                         break;
                             //if nothing is selected go back to question
