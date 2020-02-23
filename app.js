@@ -4,18 +4,16 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 
-const team = [];
+const team = [internData, managerData, engineerData];
 
 function app(){
 
-    function getTeam(){
-
-        inquirer.prompt([
+     inquirer.prompt([
             {
                 type: 'list',
                 name: 'jobTitle',
                 message: 'What type of Team Member are we adding?',
-                choices: ['Manager', 'Intern', 'Engineer']
+                choices: ['Manager', 'Intern', 'Engineer', 'done']
             }
 
         ]).then(userResponse => {
@@ -44,7 +42,9 @@ function app(){
                             message: 'Engineers Github:'
                         },
                         //create the new engineer item, pass to array then go to getTeam() again
-                    ]).then();
+                    ]).then(function engineer(engineerData){
+                         console.log(engineerData);
+                    });
                     break;
                     //if Manager is selected ask the questions to create manager object
                 case 'Manager':
@@ -70,7 +70,9 @@ function app(){
                             message: 'Office Number:'
                         },
                         //create the new maanger object then go back to getTeam()
-                    ]).then()
+                    ]).then(function manager(managerData){
+                        console.log(managerData);
+                    });
                     break;
                     //if Intern is selected ask questions to create the intern object
                     case 'Intern':
@@ -96,15 +98,17 @@ function app(){
                                 message: 'Interns School:'
                             },
                             //create new intern object, add to array then go to getTeam()
-                        ]).then()
+                        ]).then(function intern(internData){
+                            console.log(internData)
+                        });
                         break;
                             //if nothing is selected go back to question
                         default:
-                            getTeam();
             };
         });
 
     };
-};
 //run the app to build the team
 app();
+
+console.log(team);
