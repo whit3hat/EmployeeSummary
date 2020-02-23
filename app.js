@@ -23,28 +23,29 @@ function app(){
                     inquirer.prompt([
                         {
                             type: 'input',
-                            name: 'engineerName',
+                            name: 'name',
                             message: 'Engineer Name:'
                         },
                         {
                             type: 'input',
-                            name: 'engineerId',
+                            name: 'id',
                             message: 'Engineer ID:'
                         },
                         {
                             type: 'input',
-                            name: 'engineerEmail',
+                            name: 'email',
                             message: 'Engineers Email:'
                         },
                         {
                             type: 'input',
-                            name: 'engineerGithub',
+                            name: 'github',
                             message: 'Engineers Github:'
                         },
                         //create the new engineer item, pass to array then go to getTeam() again
                     ]).then(function engineer(engineerData){
                          console.log(engineerData);
                          const engineer = new Engineer(engineerData)
+                         console.log(engineer);
                          app();
                     });
                     break;
@@ -108,6 +109,9 @@ function app(){
                             app();
                         });
                         break;
+                        //if they select done it will stop the prompts
+                        case 'done' :
+                            return;
                             //if nothing is selected go back to question
                         default:
             };
