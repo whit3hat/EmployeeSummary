@@ -4,7 +4,7 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 
-const team = [internData, managerData, engineerData];
+// const team = [internData, managerData, engineerData];
 
 function app(){
 
@@ -45,6 +45,7 @@ function app(){
                     ]).then(function engineer(engineerData){
                          console.log(engineerData);
                          const engineer = new Engineer(engineerData)
+                         app();
                     });
                     break;
                     //if Manager is selected ask the questions to create manager object
@@ -74,6 +75,7 @@ function app(){
                     ]).then(function manager(managerData){
                         console.log(managerData);
                         const manager = new Manager(managerData)
+                        app();
                     });
                     break;
                     //if Intern is selected ask questions to create the intern object
@@ -103,6 +105,7 @@ function app(){
                         ]).then(function intern(internData){
                             console.log(internData)
                             const intern = new Intern(internData)
+                            app();
                         });
                         break;
                             //if nothing is selected go back to question
@@ -114,4 +117,3 @@ function app(){
 //run the app to build the team
 app();
 
-console.log(team);
