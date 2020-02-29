@@ -4,7 +4,8 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 
-// const team = [internData, managerData, engineerData];
+//array for team info to be stored
+const team = [];
 
 function app(){
 
@@ -44,7 +45,7 @@ function app(){
                         //create the new engineer item, pass to array then go to getTeam() again
                     ]).then(function engineer(engineerData){
                          console.log(engineerData);
-                         const engineer = new Engineer(engineerData)
+                         team.push(new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github));
                          console.log(engineer);
                          app();
                     });
@@ -54,12 +55,12 @@ function app(){
                     inquirer.prompt([
                         {
                             type: 'input',
-                            name: 'managerName',
+                            name: 'name',
                             message: 'Managers Name:'
                         },
                         {
                             type: 'input',
-                            name: 'managerID',
+                            name: 'id',
                             message: 'Managers ID:'
                         },
                         {
@@ -75,7 +76,7 @@ function app(){
                         //create the new maanger object then go back to getTeam()
                     ]).then(function manager(managerData){
                         console.log(managerData);
-                        const manager = new Manager(managerData)
+                        team.push(new Manager(managerData.name,managerData.id, managerData.managerTitle, managerData.managerOffice ));
                         console.log(manager);
                         app();
                     });
@@ -85,17 +86,17 @@ function app(){
                         inquirer.prompt([
                             {
                                 type: 'input',
-                                name: 'internName',
+                                name: 'name',
                                 message: 'Intern Name:',
                             },
                             {
                                 type: 'input',
-                                name: 'internID',
+                                name: 'id',
                                 message: 'Intern ID:'
                             },
                             {
                                 type: 'input',
-                                name: 'internEmail',
+                                name: 'email',
                                 message: 'Intern Email:'
                             },
                             {
@@ -106,7 +107,7 @@ function app(){
                             //create new intern object, add to array then go to getTeam()
                         ]).then(function intern(internData){
                             console.log(internData)
-                            const intern = new Intern(internData)
+                            team.push(new Intern(internData.name, internData.id, internData.email, internData.internSchool));
                             app();
                         });
                         break;
@@ -170,19 +171,19 @@ function generateHTML() {
         <div class=row>`
 
         //loop to add the user info to the HTML
-        for (let i = 0; i < arrayemp.length; i++) {
+        for (let i = 0; i < team.length; i++) {
             HTML += `<div class="card col-md-2" style="width: 18rem;">
                 <div class="card-header">
-                    <h2 class="card-title"><span id="name">${arrayemp[i].name}</span> 
+                    <h2 class="card-title"><span id="name">${team[i].name}</span> 
                     <br> 
-                    ${arrayemp[i].getRole()}
+                    ${team[i].getRole()}
                     </h2>
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        <div>ID: <span id="ID">${arrayemp[i].id}</span></div>
-                            <div>Email: <span id="email">${arrayemp[i].email}</span></div>
-                        <div>${arrayemp[i].role}: <span id="role">${arrayemp[i].getDiffRole()}</span></div>
+                        <div>ID: <span id="ID">${team[i].id}</span></div>
+                            <div>Email: <span id="email">${team[i].email}</span></div>
+                        <div>${team[i].role}: <span id="role">${team[i].getDiffRole()}</span></div>
                     </p>
                 </div>
             </div>`
