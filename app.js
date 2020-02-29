@@ -114,6 +114,7 @@ function app(){
                         break;
                         //if they select done it will stop the prompts
                         case 'done' :
+                            generateHTML();
                             return;
                             //if nothing is selected go back to question
                         default:
@@ -184,7 +185,7 @@ function generateHTML() {
                     <p class="card-text">
                         <div>ID: <span id="ID">${team[i].id}</span></div>
                             <div>Email: <span id="email">${team[i].email}</span></div>
-                        <div>${team[i].role}: <span id="role">${team[i].getDiffRole()}</span></div>
+                        <div>${team[i].role}: <span id="role">${team[i].getRole()}</span></div>
                     </p>
                 </div>
             </div>`
