@@ -76,6 +76,7 @@ function app(){
                     ]).then(function manager(managerData){
                         console.log(managerData);
                         const manager = new Manager(managerData)
+                        console.log(manager);
                         app();
                     });
                     break;
@@ -118,6 +119,78 @@ function app(){
         });
 
     };
+
+
+//HTML to generate the info for the employees
+function generateHTML() {
+    let HTML = `<!DOCTYPE html>
+    <head>
+        <title></title>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+        <style>
+            header {
+                position: relative;
+                background-color: red;
+                color: black;
+                width: 100%;
+                height: 100px;
+            }
+            header h1{
+                position: relative;
+                left: 40%
+            }
+            .card col-md-2{
+                border: solid;
+            }
+            .card-header {
+                background-color: blue;
+                color: white;
+            }
+            .card-body {
+                color: teal
+            }
+            .row{
+                place-content: center;
+            }
+        </style>
+    </head>
+    
+    <body background="../asset/interlaced1/interlaced.png">
+        <header>
+            <h1>My Team</h1>
+        </header>
+        <div class=row>`
+
+        //loop to add the user info to the HTML
+        for (let i = 0; i < arrayemp.length; i++) {
+            HTML += `<div class="card col-md-2" style="width: 18rem;">
+                <div class="card-header">
+                    <h2 class="card-title"><span id="name">${arrayemp[i].name}</span> 
+                    <br> 
+                    ${arrayemp[i].getRole()}
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <div>ID: <span id="ID">${arrayemp[i].id}</span></div>
+                            <div>Email: <span id="email">${arrayemp[i].email}</span></div>
+                        <div>${arrayemp[i].role}: <span id="role">${arrayemp[i].getDiffRole()}</span></div>
+                    </p>
+                </div>
+            </div>`
+        }
+    
+        HTML += `</div></body></html>`
+        return HTML;
+    }
 //run the app to build the team
 app();
 
