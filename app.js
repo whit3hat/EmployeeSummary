@@ -46,7 +46,7 @@ function app(){
                     ]).then(function engineer(engineerData){
                          console.log(engineerData);
                          team.push(new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github));
-                         console.log(engineer);
+                         console.log('Team EngineerAdd: ', team);
                          app();
                     });
                     break;
@@ -77,7 +77,7 @@ function app(){
                     ]).then(function manager(managerData){
                         console.log(managerData);
                         team.push(new Manager(managerData.name,managerData.id, managerData.managerTitle, managerData.managerOffice ));
-                        console.log(manager);
+                        console.log('Team: ManagerAdd', team);
                         app();
                     });
                     break;
@@ -109,6 +109,7 @@ function app(){
                             console.log(internData)
                             team.push(new Intern(internData.name, internData.id, internData.email, internData.internSchool));
                             app();
+                            console.log('Team: InterAdd', team);
                         });
                         break;
                         //if they select done it will stop the prompts
