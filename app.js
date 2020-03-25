@@ -3,10 +3,13 @@ const Employee = require('./lib/Employee');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
+const fs = require('fs');
+const util = require('util');
+const writeFileAsync = util.promisify(fs.writeFile);
 
 //array for team info to be stored
 const team = [];
-
+console.log(team);
 function app(){
 
      inquirer.prompt([
@@ -114,7 +117,9 @@ function app(){
                         break;
                         //if they select done it will stop the prompts
                         case 'done' :
-                            generateHTML();
+                            let HTML = generateHTML();
+                            writeFileAsync('./output/profile.html', HTML);
+                            console.log('wrote html');
                             return;
                             //if nothing is selected go back to question
                         default:
@@ -166,7 +171,6 @@ function generateHTML() {
         </style>
     </head>
     
-    <body background="../asset/interlaced1/interlaced.png">
         <header>
             <h1>My Team</h1>
         </header>
